@@ -1,26 +1,28 @@
-import React from "react"
+import './TaskCard.css'
+
 import Task from "./Task"
 interface Props {
     tasks:TaskItem[]
 }
 
+const TaskList = (props: Props) => {
 
-interface State {
-    tasks: TaskItem[];
-}
-class TaskList extends React.Component<Props, State> {
-  
-    render() {
-        return (
-            <>
-                {this.props.tasks.map(( task,idx) => (
-                    <Task key={idx} title={task.title} />
-                ))}
-            </>
-        );
-    }
-}
+    const list = props.tasks.map((task, idx) => (
+      <li key={idx}>
+      <Task
+        id={task.id}
+        title={task.title}
+        description={task.description}
+        dueDate={task.dueDate}
+      />
+      </li>
+    ));
+    return <ul>{list}</ul>;
+  };
 export default TaskList
 export interface TaskItem {
+  id:string;
     title: string;
+    description:string;
+    dueDate:string
   }
